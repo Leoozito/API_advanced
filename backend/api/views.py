@@ -1,15 +1,19 @@
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.forms.models import model_to_dict
+from products.models import Product
 
 def api_home(request, *args, **kwargs):
-    body = request.body # byte string of JSON data
-    print(body) 
+    model_data = Product.objects.all().order_by("?").first()
     data = {}
-    try:
-        data = json.loads(body) # Para converter um json para um dicionario em python
-    except:
-        pass 
-    print(data.keys())
-    data['headers'] = request.headers # request.META
-    data['content_type'] = request.content_type 
+    
+    if model_data:
+        data = model_to_dict(model_data, fields=['id', 'title', 'price'])
     return JsonResponse(data)
+    #     print(data)
+    #     json_data_str = json.dumps(data) 
+    # return HttpResponse(json_data_str, headers={"content-type" : "application/json"}) # pegando o resultado do http e transformando em JSON
+
+    # temos que:
+    # pegar uma Instance Model e transformar em um Dicionario Python para usarmos
+    # e retornar para o client JSON

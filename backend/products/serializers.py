@@ -8,11 +8,12 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             'title',
             'content',
-            'price'
+            'price',
             'sale_price',
             'my_discount', 
         ]
 
     def get_my_discount(self, obj):
-        print(obj.id)
+        if not hasattr(obj, 'id'):
+            return None
         return obj.get_discount()  # recebendo o valor do models.py

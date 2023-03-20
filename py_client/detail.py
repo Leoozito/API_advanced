@@ -2,10 +2,10 @@ import requests
 
 # endpoint = "https://httpbin.org/status/200/"
 # endpoint = "https://httpbin.org/anything"
-endpoint = "http://localhost:8000/api/"
+endpoint = "http://localhost:8000/api/products/1/"
 
 # Aqui é enviado uma response que vai direto para url
-get_response = requests.post(endpoint, json={"title":"Abc123", "content": "Hello World", "price": "abc1234"})
+get_response = requests.get(endpoint)
 
 # print(get_response.headers)
 # print(get_response.text)

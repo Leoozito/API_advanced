@@ -8,5 +8,4 @@ data = {
 }
 
 get_response = requests.post(endpoint, json=data)
-
 print(get_response.json())

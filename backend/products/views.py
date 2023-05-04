@@ -21,7 +21,6 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
             content = title
         serializer.save(content=content)
 
-
 product_list_create_view = ProductListCreateAPIView.as_view()
 
 # Modo de visualização da API 
@@ -31,14 +30,18 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     
 product_detail_view = ProductDetailAPIView.as_view()
 
-# class ProductListAPIView(generics.ListAPIView):
-#     '''
-#     Não vou usar esse metodo
-#     '''
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
+class ProductUpdateAPIView(generics.UpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = 'pk'
+    
+    def perform_update(self, serializer):
+        instance = serializer.save() 
+        if not instance.content:
+            instance.content = instance.title
+    
+product_update_view = ProductUpdateAPIView.as_view()
 
-product_list_view = ProductListAPIView.as_view()
 
 @api_view(['GET', 'POST'])
 def product_alt_view(request, pk=None, *args, **kwargs):

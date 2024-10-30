@@ -4,7 +4,7 @@ asgiref==3.6.0
 autopep8==2.0.2
 certifi==2024.7.4
 charset-normalizer==3.1.0
-Django==4.1.13
+Django==4.2.16
 djangorestframework==3.14.0
 idna==3.4
 pycodestyle==2.10.0

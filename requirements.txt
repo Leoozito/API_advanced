@@ -5,7 +5,7 @@ autopep8==2.0.2
 certifi==2024.7.4
 charset-normalizer==3.1.0
 Django==4.2.16
-djangorestframework==3.14.0
+djangorestframework==3.15.2
 idna==3.4
 pycodestyle==2.10.0
 pytz==2022.7.1
